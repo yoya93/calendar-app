@@ -8,6 +8,7 @@ import { Navbar } from "../ui/Navbar";
 
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import "moment/locale/es";
+import { CalendarModal } from "./CalendarModal";
 
 moment.locale("es");
 const localizer = momentLocalizer(moment);
@@ -75,6 +76,8 @@ export const CalendarScreen = () => {
         onDoubleClickEvent={onDoubleClick}
         view={lastView}
       />
+
+      <CalendarModal />
     </div>
   );
 };
