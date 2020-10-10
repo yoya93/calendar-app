@@ -9,7 +9,7 @@ import { Navbar } from "../ui/Navbar";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import "moment/locale/es";
 import { CalendarModal } from "./CalendarModal";
-import { ui0penModal } from "../../actions/ui";
+import { ui0penModal, EventSetActive } from "../../actions/ui";
 import { useDispatch } from "react-redux";
 
 moment.locale("es");
@@ -40,6 +40,8 @@ export const CalendarScreen = () => {
   };
   const onSelectEvent = (e) => {
     console.log(e);
+
+    dispatch(EventSetActive(e));
   };
 
   const onViewChange = (e) => {

@@ -11,3 +11,16 @@ export const uiCloseModal = () => {
     type: types.uiCloseModal,
   };
 };
+
+export const EventSetActive = (event) => {
+  return {
+    type: types.eventSetActive,
+    payload: event,
+  };
+};
+export const EventAddNew = (event) => {
+  return {
+    type: types.eventAddNew,
+    payload: event,
+  };
+};
