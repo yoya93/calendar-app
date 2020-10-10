@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-
-import Modal from "react-modal";
 import DateTimePicker from "react-datetime-picker";
 import moment from "moment";
 import Swal from "sweetalert2";
+import Modal from "react-modal";
 import { useSelector, useDispatch } from "react-redux";
+
 import {
   uiCloseModal,
   EventAddNew,
