@@ -9,6 +9,7 @@ import {
   uiCloseModal,
   EventAddNew,
   eventClearActiveEvents,
+  eventUpdated,
 } from "../../actions/ui";
 
 const customStyles = {
@@ -36,7 +37,7 @@ const initEvent = {
 
 export const CalendarModal = () => {
   const { modalOpen } = useSelector((state) => state.ui);
-  const { activeEvent } = useSelector((state) => state.calendar);
+  const { activeEvent, events } = useSelector((state) => state.calendar);
 
   const dispatch = useDispatch();
 
@@ -80,6 +81,7 @@ export const CalendarModal = () => {
       end: e,
     });
   };
+
   const handleSubmitForm = (e) => {
     e.preventDefault();
 
@@ -98,16 +100,20 @@ export const CalendarModal = () => {
       return setTitleValid(false);
     }
 
-    dispatch(
-      EventAddNew({
-        ...formValues,
-        id: new Date().getTime(),
-        user: {
-          id: "123456",
-          name: "Yoya",
-        },
-      })
-    );
+    if (activeEvent) {
+      dispatch(eventUpdated(formValues));
+    } else {
+      dispatch(
+        EventAddNew({
+          ...formValues,
+          id: new Date().getTime(),
+          user: {
+            id: "123456",
+            name: "Yoya",
+          },
+        })
+      );
+    }
 
     setTitleValid(true);
 
