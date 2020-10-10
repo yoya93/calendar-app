@@ -10,28 +10,16 @@ import "react-big-calendar/lib/css/react-big-calendar.css";
 import "moment/locale/es";
 import { CalendarModal } from "./CalendarModal";
 import { ui0penModal, EventSetActive } from "../../actions/ui";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { AddNewFab } from "../ui/AddNewFab";
 
 moment.locale("es");
 const localizer = momentLocalizer(moment);
 
-const events = [
-  {
-    title: "Cumpleaños del jefe",
-    start: moment().toDate(),
-    end: moment().add(2, "hours").toDate(),
-    bgcolor: "#fafafa",
-    notes: "comprar pastel",
-    user: {
-      _id: "123",
-      name: "YoYa",
-    },
-  },
-];
-
 export const CalendarScreen = () => {
   const dispatch = useDispatch();
+  const { events } = useSelector((state) => state.calendar);
+
   const [lastView, setLastView] = useState(
     localStorage.getItem("lastView") || "month"
   );
