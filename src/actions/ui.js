@@ -24,3 +24,9 @@ export const EventAddNew = (event) => {
     payload: event,
   };
 };
+
+export const eventClearActiveEvents = () => {
+  return {
+    type: types.eventClearActiveEvents,
+  };
+};
