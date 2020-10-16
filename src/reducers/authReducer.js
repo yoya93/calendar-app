@@ -15,6 +15,7 @@ export const authReducer = (state = initialState, action) => {
         uid: action.payload.uid,
         name: action.payload.name,
       };
+
     default:
       return state;
   }

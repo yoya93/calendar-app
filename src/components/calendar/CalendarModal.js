@@ -37,7 +37,7 @@ const initEvent = {
 
 export const CalendarModal = () => {
   const { modalOpen } = useSelector((state) => state.ui);
-  const { activeEvent, events } = useSelector((state) => state.calendar);
+  const { activeEvent } = useSelector((state) => state.calendar);
 
   const dispatch = useDispatch();
 
