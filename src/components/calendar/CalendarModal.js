@@ -10,6 +10,7 @@ import {
   EventAddNew,
   eventClearActiveEvents,
   eventUpdated,
+  EventStartAddNew,
 } from "../../actions/ui";
 
 const customStyles = {
@@ -105,16 +106,7 @@ export const CalendarModal = () => {
     if (activeEvent) {
       dispatch(eventUpdated(formValues));
     } else {
-      dispatch(
-        EventAddNew({
-          ...formValues,
-          id: new Date().getTime(),
-          user: {
-            id: "123456",
-            name: "Yoya",
-          },
-        })
-      );
+      dispatch(EventStartAddNew(formValues));
     }
 
     setTitleValid(true);
