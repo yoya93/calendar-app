@@ -46,8 +46,6 @@ export const EventStartAddNew = (event) => {
       const resp = await fetchConToken("events", event, "POST");
       const body = await resp.json();
 
-      console.log(body);
-
       if (body.ok) {
         event.id = body.event.id;
         event.user = {
@@ -64,6 +62,28 @@ export const EventStartAddNew = (event) => {
 };
 
 const EventAddNew = (event) => {
+  return {
+    type: types.eventAddNew,
+    payload: event,
+  };
+};
+
+export const EventStartLoaded = () => {
+  return async (dispatch, getState) => {
+    try {
+      const resp = await fetchConToken("events");
+      const body = await resp.json();
+
+      console.log(body);
+
+      // dispatch(EventLoaded(event));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+const EventLoaded = (event) => {
   return {
     type: types.eventAddNew,
     payload: event,

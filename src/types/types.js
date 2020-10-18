@@ -1,3 +1,17 @@
+// events: [
+//   {
+//     id: "ghghgghfuvfr6jhiuytre456789ikngyuik",
+//     title: "Cumpleaños del jefe",
+//     start: moment().toDate(),
+//     end: moment().add(2, "hours").toDate(),
+//     notes: "comprar pastel",
+//     user: {
+//       _id: "123",
+//       name: "YoYa",
+//     },
+//   },
+// ],
+
 export const types = {
   uiOpenModal: "[ui] Open modal",
   uiCloseModal: "[ui] Close modal",
@@ -7,6 +21,7 @@ export const types = {
   eventClearActiveEvents: "[event] Clear New Active Events",
   eventUpdated: "[event] Updated",
   eventDeleted: "[event] Deleted",
+  eventLoaded: "[event] Loaded",
 
   authChecking: "[auth] Checking login state",
   authCheckingFinish: "[auth] Finish checking login state",

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Calendar, momentLocalizer } from "react-big-calendar";
 import moment from "moment";
 import Swal from "sweetalert2";
@@ -15,6 +15,7 @@ import {
   ui0penModal,
   EventSetActive,
   eventClearActiveEvents,
+  EventStartLoaded,
 } from "../../actions/ui";
 import { AddNewFab } from "../ui/AddNewFab";
 import { DeleteEventFab } from "../ui/DeleteEventFab";
@@ -25,6 +26,10 @@ const localizer = momentLocalizer(moment);
 export const CalendarScreen = () => {
   const dispatch = useDispatch();
   const { activeEvent, events } = useSelector((state) => state.calendar);
+
+  useEffect(() => {
+    dispatch(EventStartLoaded());
+  }, [dispatch]);
 
   const [lastView, setLastView] = useState(
     localStorage.getItem("lastView") || "month"
