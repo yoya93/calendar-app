@@ -7,17 +7,9 @@ import { startLogin, startRegister } from "../../actions/auth";
 import Swal from "sweetalert2";
 
 export const LoginScreen = () => {
-  const initialForm = {
-    lEmail: "yoya@gmail.com",
-    lPassword: "145ccc6",
-  };
+  const initialForm = {};
 
-  const initialFormRegister = {
-    rName: "DesdeFrontend",
-    rEmail: "yoya12@gmail.com",
-    rPassword1: "145ccc6",
-    rPassword2: "145ccc6",
-  };
+  const initialFormRegister = {};
 
   const [formLoginValues, handleLoginInputChange] = useForm(initialForm);
   const [formRegisterValues, handleRegisterInputChange] = useForm(
