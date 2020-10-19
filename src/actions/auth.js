@@ -72,6 +72,7 @@ export const startChecking = () => {
 export const startLogout = () => {
   return async (dispatch) => {
     localStorage.clear();
+    dispatch(eventCleaning());
     dispatch(logout());
   };
 };
@@ -86,4 +87,7 @@ const logout = () => ({
 
 const checkingFinish = () => ({
   type: types.authCheckingFinish,
+});
+const eventCleaning = () => ({
+  type: types.eventCleaning,
 });
