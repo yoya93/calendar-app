@@ -38,7 +38,7 @@ export const calendarReducer = (state = initialState, action) => {
     case types.eventLoaded:
       return {
         ...state,
-        events: { ...action.payload.events },
+        events: [...action.payload],
       };
     default:
       return state;

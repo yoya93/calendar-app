@@ -26,6 +26,7 @@ const localizer = momentLocalizer(moment);
 export const CalendarScreen = () => {
   const dispatch = useDispatch();
   const { activeEvent, events } = useSelector((state) => state.calendar);
+  const { uid } = useSelector((state) => state.auth);
 
   useEffect(() => {
     dispatch(EventStartLoaded());
@@ -68,9 +69,9 @@ export const CalendarScreen = () => {
     }
   };
 
-  const eventStyleGetter = (event, start, end, isSelected) => {
+  const eventStyleGetter = (events, start, end, isSelected) => {
     const style = {
-      backgroundColor: "#367CF7",
+      backgroundColor: uid === events.user._id ? "#367CF7" : "#465660",
       borderRadius: "0px",
       opacity: 0.8,
       display: "block",

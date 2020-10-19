@@ -1,5 +1,7 @@
 import { types } from "../types/types";
 import { fetchConToken } from "../helpers/fetch";
+import { prepareEvents } from "../helpers/prepareEvents";
+import Swal from "sweetalert2";
 
 export const ui0penModal = () => {
   return {
@@ -23,12 +25,6 @@ export const EventSetActive = (event) => {
 export const eventClearActiveEvents = () => {
   return {
     type: types.eventClearActiveEvents,
-  };
-};
-export const eventUpdated = (event) => {
-  return {
-    type: types.eventUpdated,
-    payload: event,
   };
 };
 
@@ -69,14 +65,14 @@ const EventAddNew = (event) => {
 };
 
 export const EventStartLoaded = () => {
-  return async (dispatch, getState) => {
+  return async (dispatch) => {
     try {
       const resp = await fetchConToken("events");
       const body = await resp.json();
 
-      console.log(body);
+      const event = prepareEvents(body.events);
 
-      // dispatch(EventLoaded(event));
+      dispatch(EventLoaded(event));
     } catch (error) {
       console.log(error);
     }
@@ -85,7 +81,31 @@ export const EventStartLoaded = () => {
 
 const EventLoaded = (event) => {
   return {
-    type: types.eventAddNew,
+    type: types.eventLoaded,
+    payload: event,
+  };
+};
+
+export const eventStartUpdated = (event) => {
+  return async (dispatch) => {
+    try {
+      const resp = await fetchConToken(`events/${event.id}`, event, "PUT");
+      const body = await resp.json();
+
+      if (body.ok) {
+        dispatch(eventUpdated(event));
+      } else {
+        Swal.fire("Error", body.msg, "error");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const eventUpdated = (event) => {
+  return {
+    type: types.eventUpdated,
     payload: event,
   };
 };
