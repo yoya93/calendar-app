@@ -28,12 +28,6 @@ export const eventClearActiveEvents = () => {
   };
 };
 
-export const eventDeleted = () => {
-  return {
-    type: types.eventDeleted,
-  };
-};
-
 export const EventStartAddNew = (event) => {
   return async (dispatch, getState) => {
     const { uid, name } = getState().auth;
@@ -103,9 +97,33 @@ export const eventStartUpdated = (event) => {
   };
 };
 
-export const eventUpdated = (event) => {
+const eventUpdated = (event) => {
   return {
     type: types.eventUpdated,
     payload: event,
+  };
+};
+
+export const eventStartDeleted = () => {
+  return async (dispatch, getState) => {
+    const { id } = getState().calendar.activeEvent;
+    try {
+      const resp = await fetchConToken(`events/${id}`, {}, "DELETE");
+      const body = await resp.json();
+
+      if (body.ok) {
+        dispatch(eventDeleted());
+      } else {
+        Swal.fire("Error", body.msg, "error");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+const eventDeleted = () => {
+  return {
+    type: types.eventDeleted,
   };
 };

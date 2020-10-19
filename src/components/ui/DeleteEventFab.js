@@ -1,5 +1,5 @@
 import React from "react";
-import { eventDeleted } from "../../actions/ui";
+import { eventStartDeleted } from "../../actions/ui";
 import { useDispatch } from "react-redux";
 
 export const DeleteEventFab = () => {
@@ -8,7 +8,7 @@ export const DeleteEventFab = () => {
   return (
     <button
       onClick={() => {
-        dispatch(eventDeleted());
+        dispatch(eventStartDeleted());
       }}
       className="btn btn-danger fab-danger"
     >
